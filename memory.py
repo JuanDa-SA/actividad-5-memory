@@ -68,12 +68,6 @@ def tap(x, y):
         hide[mark] = False
         state['mark'] = None
 
-    """Detecta si todos los cuadros han sido abiertos. Autor: Alberto"""
-    if all(not hidden for hidden in hide):
-        print("Congrats! All tiles revealed")
-        done()
-
-
 def draw():
     """Draw image and tiles."""
     clear()
@@ -97,6 +91,14 @@ def draw():
         color('black')
         """Align para que los  numeros se centren"""
         write(tiles[mark], font=('Arial', 30, 'normal'), align='center')
+
+    """Detecta si todos los cuadros han sido abiertos. Autor: Alberto"""
+    if all(not hidden for hidden in hide):
+        goto(0, -110)
+        color('blue')
+        write(f"Congrats! Al tiles revealed\nin {taps} taps", align='center',
+        font=('Arial', 20, 'bold'))
+
 
     update()
     ontimer(draw, 100)
