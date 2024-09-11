@@ -52,16 +52,17 @@ def tap(x, y):
     la función,  es la misma variable que fue declarada fuera de"""
     """Autor: Javier J.P."""
     global taps
-
-    """Incrementar el contador de taps. Autor: Javier J.P."""
-    taps += 1
-    """Imprimimos la cuenta. Autor: Javier J.P."""
-    print("Taps:", taps)
     spot = index(x, y)
     mark = state['mark']
+    """Incrementar el contador de taps. Autor: Javier J.P."""
+    """Imprimimos la cuenta. Autor: Javier J.P."""
 
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
+        if hide[spot]:
+            taps += 1
+            print("Taps:", taps)
+
     else:
         hide[spot] = False
         hide[mark] = False
