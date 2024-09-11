@@ -14,33 +14,36 @@ from turtle import *
 
 from freegames import path
 
+"Cambiamos los numeros por letras. Autor: Juan Daniel"
 car = path('car.gif')
-tiles = list(range(32)) * 2
+tiles = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')[:18] * 2
 state = {'mark': None}
-hide = [True] * 64
+hide = [True] * 36
 
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
+    "Ajustamos la cuadricula. Autor: Juan Daniel"
     up()
     goto(x, y)
     down()
     color('black', 'white')
     begin_fill()
     for count in range(4):
-        forward(50)
+        forward(70)
         left(90)
     end_fill()
 
 
 def index(x, y):
     """Convert (x, y) coordinates to tiles index."""
-    return int((x + 200) // 50 + ((y + 200) // 50) * 8)
+    "Cambiamos cuadricula a 6*6. Autor: Juan Daniel"
+    return int((x + 210) // 70 + ((y + 210) // 70) * 6)
 
 
 def xy(count):
     """Convert tiles count to (x, y) coordinates."""
-    return (count % 8) * 50 - 200, (count // 8) * 50 - 200
+    return (count % 6) * 70 - 210, (count // 6) * 70 - 210
 
 """Creamos una variable que servira de contador para cada tap
 que se pulse. Javier J.P."""
@@ -75,7 +78,7 @@ def draw():
     shape(car)
     stamp()
 
-    for count in range(64):
+    for count in range(36):
         if hide[count]:
             x, y = xy(count)
             square(x, y)
@@ -87,7 +90,7 @@ def draw():
         up()
         """Ajusta la posicion de los numeros de un digito.
         Autor: Alberto"""
-        goto(x + 26, y + 1)
+        goto(x + 35, y + 15)
         color('black')
         """Align para que los  numeros se centren"""
         write(tiles[mark], font=('Arial', 30, 'normal'), align='center')
