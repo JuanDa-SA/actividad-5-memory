@@ -42,9 +42,19 @@ def xy(count):
     """Convert tiles count to (x, y) coordinates."""
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
+"""Creamos una variable que servira de contador para cada tap que se pulse. Javier J.P."""
+taps = 0
 
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
+    """Indicamos que la variable taps que se va a modificar dentro de la función,  es la misma variable que fue declarada fuera de"""
+    """Autor: Javier J.P."""
+    global taps
+    
+    """Incrementar el contador de taps. Autor: Javier J.P."""
+    taps += 1 
+    """Imprimimos la cuenta. Autor: Javier J.P."""
+    print("Taps:", taps)
     spot = index(x, y)
     mark = state['mark']
 
