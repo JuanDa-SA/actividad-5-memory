@@ -42,17 +42,19 @@ def xy(count):
     """Convert tiles count to (x, y) coordinates."""
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
-"""Creamos una variable que servira de contador para cada tap que se pulse. Javier J.P."""
+"""Creamos una variable que servira de contador para cada tap
+que se pulse. Javier J.P."""
 taps = 0
 
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
-    """Indicamos que la variable taps que se va a modificar dentro de la función,  es la misma variable que fue declarada fuera de"""
+    """Indicamos que la variable taps que se va a modificar dentro de
+    la función,  es la misma variable que fue declarada fuera de"""
     """Autor: Javier J.P."""
     global taps
-    
+
     """Incrementar el contador de taps. Autor: Javier J.P."""
-    taps += 1 
+    taps += 1
     """Imprimimos la cuenta. Autor: Javier J.P."""
     print("Taps:", taps)
     spot = index(x, y)
@@ -64,6 +66,11 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+
+    """Detecta si todos los cuadros han sido abiertos. Autor: Alberto"""
+    if all(not hidden for hidden in hide):
+        print("Congrats! All tiles revealed")
+        done()
 
 
 def draw():
@@ -83,9 +90,12 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        """Ajusta la posicion de los numeros de un digito.
+        Autor: Alberto"""
+        goto(x + 26, y + 1)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        """Align para que los  numeros se centren"""
+        write(tiles[mark], font=('Arial', 30, 'normal'), align='center')
 
     update()
     ontimer(draw, 100)
